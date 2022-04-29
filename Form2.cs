@@ -12,23 +12,28 @@ namespace Examen2
 {
     public partial class Form2 : Form
     {
-        public Label lblMensaje;
-        private Button btnAceptar;
-        private Button btnCancel;
-        public String mensaje;
-
         public CheckBox? chbxMX;
         public CheckBox? chbxUSD;
         public CheckBox? chbxCAD;
         public CheckBox? chbxEUR;
         public CheckBox? chbxJPY;
 
+        public Label lblMensaje;
+        private Button btnAceptar;
+        private Button btnCancel;
+        public float Monto2, Conversion, Conversion2, Conversion3, Conversion4, Conversion5;
+        public double resultado;
+        public TextBox txtMoneda;
+
+
+
+
+        //public TextBox txtMoneda;
         public Form2()
         {
             btnCancel = new Button();
             btnAceptar = new Button();
             lblMensaje = new Label();
-            mensaje = "";
             InitializeComponent();
             InicializarComponentes();
         }
@@ -37,46 +42,6 @@ namespace Examen2
         {
             this.Size = new Size(400, 450);
             this.Text = "Nueva Ventana";
-
-            // MX
-            chbxMX = new CheckBox();
-            chbxMX.AutoSize = true;
-            chbxMX.Location = new Point(15, 15);
-            chbxMX.Text = "MXN - Pesos Mexicanos";
-            this.Controls.Add(chbxMX);
-
-            // USD
-            chbxUSD = new CheckBox();
-            chbxUSD.AutoSize = true;
-            chbxUSD.Location = new Point(15, 40);
-            chbxUSD.Text = "USD - Dólar Estadounidense";
-            this.Controls.Add(chbxUSD);
-
-            // CAD
-            chbxCAD = new CheckBox();
-            chbxCAD.AutoSize = true;
-            chbxCAD.Location = new Point(15, 65);
-            chbxCAD.Text = "CAD - Dólar Canadiense";
-            this.Controls.Add(chbxCAD);
-
-            // EUR
-            chbxEUR = new CheckBox();
-            chbxEUR.AutoSize = true;
-            chbxEUR.Location = new Point(15, 90);
-            chbxEUR.Text = "EUR - Euro";
-            this.Controls.Add(chbxEUR);
-
-            // JPY
-            chbxJPY = new CheckBox();
-            chbxJPY.AutoSize = true;
-            chbxJPY.Location = new Point(15, 115);
-            chbxJPY.Text = "JPY - Yen Japonés";
-            this.Controls.Add(chbxJPY);
-
-            lblMensaje.Text = "Esta es una nueva ventana";
-            lblMensaje.AutoSize = true;
-            lblMensaje.Location = new Point(300, 80);
-            //this.Controls.Add(lblMensaje);
 
             btnAceptar.Text = "Aceptar";
             btnAceptar.AutoSize = true;
@@ -91,13 +56,192 @@ namespace Examen2
             // Anidar Evento -- Cerrar 
             btnCancel.Click += new EventHandler(btnCancelar_Click);
             this.Controls.Add(btnCancel);
+            //Moneda
+            txtMoneda = new TextBox();
+            txtMoneda.Location = new Point(15, 135);
+            this.Controls.Add(txtMoneda);
 
+
+            // MX
+            chbxMX = new CheckBox();
+            chbxMX.AutoSize = true;
+            chbxMX.Location = new Point(15, 15);
+            chbxMX.Text = "MXN - Pesos Mexicanos";
+            this.Controls.Add(chbxMX);
+            chbxMX.Visible = true;
+
+            // USD
+            chbxUSD = new CheckBox();
+            chbxUSD.AutoSize = true;
+            chbxUSD.Location = new Point(15, 40);
+            chbxUSD.Text = "USD - Dólar Estadounidense";
+            this.Controls.Add(chbxUSD);
+            chbxUSD.Visible = true;
+
+            // CAD
+            chbxCAD = new CheckBox();
+            chbxCAD.AutoSize = true;
+            chbxCAD.Location = new Point(15, 65);
+            chbxCAD.Text = "CAD - Dólar Canadiense";
+            this.Controls.Add(chbxCAD);
+            chbxCAD.Visible = true;
+
+            // EUR
+            chbxEUR = new CheckBox();
+            chbxEUR.AutoSize = true;
+            chbxEUR.Location = new Point(15, 90);
+            chbxEUR.Text = "EUR - Euro";
+            this.Controls.Add(chbxEUR);
+            chbxEUR.Visible = true;
+
+            // JPY
+            chbxJPY = new CheckBox();
+            chbxJPY.AutoSize = true;
+            chbxJPY.Location = new Point(15, 115);
+            chbxJPY.Text = "JPY - Yen Japonés";
+            this.Controls.Add(chbxJPY);
+            chbxJPY.Visible = true;
 
         }
 
         private void btnAceptar_Click(Object? sender, EventArgs e)
         {
-            //mensaje = "Calculo Cerrado";
+            if (txtMoneda.Text != "Selecciona Moneda" && Monto2 > 0)
+            {
+                Form1 f1 = new Form1();
+
+                if (txtMoneda.Text == "MXN (Peso Mexicano)")
+                {
+                    if (chbxMX.Checked)
+                    {
+                        resultado = Monto2 * 1;
+                        f1.txtMonto1.Text = Convert.ToString(resultado);
+                        f1.lblMX.Visible = true;
+                        f1.txtMonto1.Visible = true;
+                    }
+                    if (chbxUSD.Checked)
+                    {
+                        resultado = Monto2 * 0.05;
+                        f1.txtMonto4.Text = Convert.ToString(resultado);
+                        f1.lblUSD.Visible = true;
+                        f1.txtMonto4.Visible = true;
+                    }
+                    if (chbxCAD.Checked)
+                    {
+                        resultado = Monto2 * 0.06;
+                        f1.txtMonto2.Text = Convert.ToString(resultado);
+                        f1.lblCAD.Visible = true;
+                        f1.txtMonto2.Visible = true;
+                    }
+                    if (chbxEUR.Checked)
+                    {
+                        resultado = Monto2 * 0.04;
+                        f1.txtMonto3.Text = Convert.ToString(resultado);
+                        f1.lblEUR.Visible = true;
+                        f1.txtMonto3.Visible = true;
+                    }
+                    if (chbxJPY.Checked)
+                    {
+                        resultado = Monto2 * 5.32;
+                        f1.txtMonto5.Text = Convert.ToString(resultado);
+                        f1.lblJPY.Visible = true;
+                        f1.txtMonto5.Visible = true;
+                    }
+                    f1.Show();
+                }
+                if (txtMoneda.Text == "USD (Dolar Estadounidense)")
+                {
+                    if (chbxMX.Checked)
+                    {
+                        resultado = Monto2 * 21.23;
+                    }
+                    if (chbxUSD.Checked)
+                    {
+                        resultado = Monto2 * 1;
+                    }
+                    if (chbxCAD.Checked)
+                    {
+                        resultado = Monto2 * 1.28;
+                    }
+                    if (chbxEUR.Checked)
+                    {
+                        resultado = Monto2 * 0.89;
+                    }
+                    if (chbxJPY.Checked)
+                    {
+                        resultado = Monto2 * 113.05;
+                    }
+                }
+                if (txtMoneda.Text == "CAD (Dolar Canadiense)")
+                {
+                    if (chbxMX.Checked)
+                    {
+                        resultado = Monto2 * 16.55;
+                    }
+                    if (chbxUSD.Checked)
+                    {
+                        resultado = Monto2 * 0.78;
+                    }
+                    if (chbxCAD.Checked)
+                    {
+                        resultado = Monto2 * 1;
+                    }
+                    if (chbxEUR.Checked)
+                    {
+                        resultado = Monto2 * 0.69;
+                    }
+                    if (chbxJPY.Checked)
+                    {
+                        resultado = Monto2 * 88.12;
+                    }
+                }
+                if (txtMoneda.Text == "EUR (Euro)")
+                {
+                    if (chbxMX.Checked)
+                    {
+                        resultado = Monto2 * 23.96;
+                    }
+                    if (chbxUSD.Checked)
+                    {
+                        resultado = Monto2 * 0.78;
+                    }
+                    if (chbxCAD.Checked)
+                    {
+                        resultado = Monto2 * 1.45;
+                    }
+                    if (chbxEUR.Checked)
+                    {
+                        resultado = Monto2 * 1;
+                    }
+                    if (chbxJPY.Checked)
+                    {
+                        resultado = Monto2 * 127.56;
+                    }
+                }
+                if (txtMoneda.Text == "JPY (Yen Japones)")
+                {
+                    if (chbxMX.Checked)
+                    {
+                        resultado = Monto2 * 0.1878;
+                    }
+                    if (chbxUSD.Checked)
+                    {
+                        resultado = Monto2 * 0.0088;
+                    }
+                    if (chbxCAD.Checked)
+                    {
+                        resultado = Monto2 * 0.0113;
+                    }
+                    if (chbxEUR.Checked)
+                    {
+                        resultado = Monto2 * 0.0078;
+                    }
+                    if (chbxJPY.Checked)
+                    {
+                        resultado = Monto2 * 1;
+                    }
+                }
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -108,12 +252,10 @@ namespace Examen2
             //this.Close();
         }
 
-
-
-
         private void Form2_Load(object sender, EventArgs e)
         {
 
         }
+
     }
 }
