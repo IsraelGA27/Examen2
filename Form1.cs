@@ -78,7 +78,7 @@ namespace Examen2
             lblConverciones.AutoSize = true;
             lblConverciones.Location = new Point(20, 100);
 
-            //Etiquetas para las monedas correspondientes
+            //Etiquetas 
 
             lblMX = new Label();
             lblMX.Text = "MXN - Peso";
@@ -137,16 +137,21 @@ namespace Examen2
 
             //Agregar controles a la ventana
             this.Controls.Add(lblFigura);
+
             this.Controls.Add(cmbFiguras);
+
             this.Controls.Add(lblCalculo);
+
             this.Controls.Add(btnCalcular);
             this.Controls.Add(txtMonto);
+
             this.Controls.Add(lblConverciones);
             this.Controls.Add(lblMX);
             this.Controls.Add(lblCAD);
             this.Controls.Add(lblEUR);
             this.Controls.Add(lblUSD);
             this.Controls.Add(lblJPY);
+
             this.Controls.Add(txtMonto1);
             this.Controls.Add(txtMonto2);
             this.Controls.Add(txtMonto3);
