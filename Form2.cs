@@ -14,23 +14,24 @@ namespace Examen2
     {
         public CheckBox? chbxMX;
         public CheckBox? chbxUSD;
-        public CheckBox? chbxCAD;
-        public CheckBox? chbxEUR;
-        public CheckBox? chbxJPY;
 
-        public Label lblMensaje;
-        private Button btnAceptar;
         private Button btnCancel;
         public float Monto2, Conversion, Conversion2, Conversion3, Conversion4, Conversion5;
         public double resultado;
         public TextBox txtMoneda;
 
 
+        public CheckBox? chbxCAD;
+        public CheckBox? chbxEUR;
+        public CheckBox? chbxJPY;
 
+        public Label lblMensaje;
+        private Button btnAceptar;
+        
 
-        //public TextBox txtMoneda;
         public Form2()
         {
+            //mensaje = "";
             btnCancel = new Button();
             btnAceptar = new Button();
             lblMensaje = new Label();
@@ -42,24 +43,6 @@ namespace Examen2
         {
             this.Size = new Size(400, 450);
             this.Text = "Nueva Ventana";
-
-            btnAceptar.Text = "Aceptar";
-            btnAceptar.AutoSize = true;
-            btnAceptar.Location = new Point(290, 350);
-            // Anidar Evento -- Cerrar 
-            btnAceptar.Click += new EventHandler(btnAceptar_Click);
-            this.Controls.Add(btnAceptar);
-
-            btnCancel.Text = "Cancelar";
-            btnCancel.AutoSize = true;
-            btnCancel.Location = new Point(20, 350);
-            // Anidar Evento -- Cerrar 
-            btnCancel.Click += new EventHandler(btnCancelar_Click);
-            this.Controls.Add(btnCancel);
-            //Moneda
-            txtMoneda = new TextBox();
-            txtMoneda.Location = new Point(15, 135);
-            this.Controls.Add(txtMoneda);
 
 
             // MX
@@ -101,6 +84,31 @@ namespace Examen2
             chbxJPY.Text = "JPY - Yen Japonés";
             this.Controls.Add(chbxJPY);
             chbxJPY.Visible = true;
+
+            btnAceptar.Text = "Aceptar";
+            btnAceptar.AutoSize = true;
+            btnAceptar.Location = new Point(290, 350);
+
+            // Anidar Evento -- Cerrar 
+            btnAceptar.Click += new EventHandler(btnAceptar_Click);
+            this.Controls.Add(btnAceptar);
+
+            btnCancel.Text = "Cancelar";
+            btnCancel.AutoSize = true;
+            btnCancel.Location = new Point(20, 350);
+
+            // Anidar Evento -- Cerrar 
+            btnCancel.Click += new EventHandler(btnCancelar_Click);
+            this.Controls.Add(btnCancel);
+
+
+            //Moneda
+            txtMoneda = new TextBox();
+            txtMoneda.Location = new Point(15, 135);
+            this.Controls.Add(txtMoneda);
+
+
+            
 
         }
 
